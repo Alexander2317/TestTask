@@ -1,2 +1,0 @@
-export const COUNTER_UPDATE = 'COUNTER_UPDATE'
-export const COUNTER_CLICK = 'COUNTER_CLICK'

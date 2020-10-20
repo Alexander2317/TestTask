@@ -3,19 +3,31 @@
 import * as React from 'react'
 import { Provider } from 'react-redux'
 import { ConnectedRouter as Router } from 'connected-react-router'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { configureStore, history } from './redux'
 
 import Pages from './pages'
+import './vendor.css'
 
 const store = configureStore()
 
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+})
+
 const App = (): React.Node => (
-  <Provider store={store}>
-    <Router history={history}>
-      <Pages />
-    </Router>
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Provider store={store}>
+      <Router history={history}>
+        <Pages />
+      </Router>
+    </Provider>
+  </ThemeProvider>
 )
 
 export default App

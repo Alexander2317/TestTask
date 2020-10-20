@@ -30,7 +30,7 @@ const getRules = (mode) => [
   {
     test: REG_EXP.js,
     exclude: /node_modules/,
-    use: ['babel-loader', 'eslint-loader'],
+    use: ['babel-loader'],
   },
   {
     test: REG_EXP.css,

@@ -1,34 +1,32 @@
 // @flow
 
 import * as React from 'react'
-import { connect } from 'react-redux'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import makeStyles from '@material-ui/styles/makeStyles'
 
-import { Title } from 'components'
+import { Users, Basket } from './components'
 
-import { updateCounter } from '../../redux/actions'
-import { counter } from '../../redux/selectors'
+const useStyles = makeStyles({
+  root: {
+    height: '100vh',
+  },
+})
 
-type Props = {
-  count: string,
-  updateCounterAction: Function,
+const Home = (): React.Node => {
+  const styles = useStyles()
+  return (
+    <Paper className={styles.root}>
+      <Grid container spacing={0}>
+        <Grid item xs={8}>
+          <Users />
+        </Grid>
+        <Grid item xs={4}>
+          <Basket />
+        </Grid>
+      </Grid>
+    </Paper>
+  )
 }
 
-const Home = ({ count, updateCounterAction }: Props): React.Node => (
-  <>
-    <Title text="Hello" />
-    <button type="button" onClick={updateCounterAction}>
-      Update click
-    </button>
-    <br />
-    <br />
-    <div>Click {count}</div>
-  </>
-)
-
-const mapStateToProps = (state) => ({ count: counter.getCount(state) })
-const mapDispatchToProps = { updateCounterAction: updateCounter }
-
-export default (connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Home): React.AbstractComponent<Props>)
+export default Home

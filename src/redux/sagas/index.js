@@ -1,9 +1,7 @@
 import { all } from 'redux-saga/effects'
 
-import { saga as counter } from './counter'
-
 function* rootSaga() {
-  yield all([counter()])
+  yield all([])
 }
 
 export default rootSaga

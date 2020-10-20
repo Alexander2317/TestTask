@@ -1,1 +1,1 @@
-export const NAME_APPLICATION = 'skillet'
+export const NAME_APPLICATION = 'test-task'
