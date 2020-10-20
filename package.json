@@ -1,11 +1,11 @@
 {
-  "name": "prnews-test-task",
+  "name": "test-task",
   "version": "0.0.1",
   "main": "index.js",
   "author": "Alexander2317",
   "license": "ISC",
   "homepage": "https://github.com/Alexander2317/TestTask#readme",
-  "description": "It's simple react boilerplate with redux and redux-saga",
+  "description": "It's test task for some company",
   "keywords": [],
   "repository": {
     "type": "git",
@@ -15,6 +15,8 @@
     "url": "https://github.com/Alexander2317/TestTask/issues"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
     "history": "^4.10.1",
