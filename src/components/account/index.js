@@ -1,3 +1,3 @@
 import Account from './account'
 
-export { Account }
+export default Account

@@ -5,6 +5,14 @@ import Box from '@material-ui/core/Box'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import makeStyles from '@material-ui/styles/makeStyles'
+import { Account } from 'components'
+
+import { TabPanel } from './components'
+
+const a11yProps = (index: number) => ({
+  id: `tab-${index}`,
+  'aria-controls': `tabpanel-${index}`,
+})
 
 const useStyles = makeStyles({
   root: {
@@ -28,9 +36,23 @@ const Users = (): React.Node => {
         onChange={handleChange}
         aria-label="navigation"
       >
-        <Tab label="Accounts" />
-        <Tab label="Payment" />
+        <Tab label="Accounts" {...a11yProps(0)} />
+        <Tab label="Payment" {...a11yProps(1)} />
       </Tabs>
+      <TabPanel value={value} index={0}>
+        <Account
+          name="test"
+          selectedValue="test"
+          value="test"
+          handleChangeRadio={() => {}}
+          userName="user"
+          userEmail="user@user.com"
+          userAddress="I'm leaving like a punk"
+        />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        test 2
+      </TabPanel>
     </Box>
   )
 }

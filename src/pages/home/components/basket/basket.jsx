@@ -16,11 +16,12 @@ const Basket = (): React.Node => {
   const styles = useStyles()
 
   return (
-    <Box className={styles.root} pt={2}>
-      <Typography variant="h4" className={styles.title}>
-        Shopping Cart
-      </Typography>
-      <br />
+    <Box className={styles.root} pt={1}>
+      <Box pt={2} mb={0.8}>
+        <Typography variant="h5" className={styles.title}>
+          Shopping Cart
+        </Typography>
+      </Box>
       <Divider variant="fullWidth" />
     </Box>
   )
