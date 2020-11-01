@@ -9,7 +9,11 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
 import makeStyles from '@material-ui/styles/makeStyles'
 
 const useStyles = makeStyles({
@@ -38,6 +42,42 @@ function Account({
   userAddress,
 }: Props): React.Node {
   const styles = useStyles()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const avatar = <Avatar aria-label={value}>{value}</Avatar>
+
+  const action = (
+    <div>
+      <IconButton aria-label="settings" onClick={handleClick}>
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        keepMounted
+        id="menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>
+          <EditIcon />
+          &nbsp; Edit
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <DeleteIcon />
+          &nbsp; Delete
+        </MenuItem>
+      </Menu>
+    </div>
+  )
+
   return (
     <Card className={styles.root}>
       <Grid container alignItems="center">
@@ -52,12 +92,8 @@ function Account({
         </Grid>
         <Grid item xs={11}>
           <CardHeader
-            avatar={<Avatar aria-label={value}>{value}</Avatar>}
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
+            avatar={avatar}
+            action={action}
             title={userName}
             subheader={userEmail}
           />
