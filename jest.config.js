@@ -17,13 +17,9 @@ module.exports = {
       '<rootDir>/tests/file-transformer.js',
   },
   verbose: true,
-  collectCoverageFrom: [
-    'components/**/*.{js,jsx}',
-    'pages/**/*.{js,jsx}',
-    '!**/node_modules/**',
-  ],
+  collectCoverageFrom: ['src/**/*.{js,jsx}', '!**/node_modules/**'],
   coverageDirectory: '<rootDir>/coverage',
-  coverageReporters: ['text', 'text-summary'],
+  coverageReporters: ['text', 'html'],
   coverageThreshold: {
     global: {
       statements: 0,
@@ -32,4 +28,20 @@ module.exports = {
       lines: 0,
     },
   },
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        suiteName: 'test-task',
+        outputDirectory: './coverage',
+        outputName: 'junit.xml',
+        uniqueOutputName: false,
+        classNameTemplate: '{classname}-{title}',
+        titleTemplate: '{classname}-{title}',
+        ancestorSeparator: ' › ',
+        usePathForSuiteName: true,
+      },
+    ],
+  ],
 }

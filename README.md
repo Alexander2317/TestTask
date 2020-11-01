@@ -14,12 +14,15 @@ Main command
 -----------------------------------
 
 ```
-lint-js - check correct js code
-lint-css - check correct css code
-lint - base command wich combine lint-js and lint-css
-fix-js - formatting your js code
-fix-css - formatting your css code
-fix - base command wich combine fix-js and fix-css
+lint:js - check correct js code
+lint:css - check correct css code
+lint - base command wich combine lint:js and lint:css
+fix:js - formatting your js code
+fix:css - formatting your css code
+fix - base command wich combine fix:js and fix:css
+flow - check types
+test - run all unit tests
+test:report - generate report about tests
 start - command to start development server
 build - build project
 analyze - analyze your bundel project
