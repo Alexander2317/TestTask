@@ -84,9 +84,12 @@ const AddUserForm = ({
             info: '',
           }}
           validate={validate}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(false)
             addUserAction(values)
+            if (!error?.message) {
+              resetForm()
+            }
           }}
         >
           {({ submitForm, isSubmitting }) => (
