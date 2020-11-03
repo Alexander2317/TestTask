@@ -66,6 +66,18 @@ declare module '@material-ui/core/LinearProgress' {
   declare module.exports: any
 }
 
+declare module '@material-ui/lab/Alert' {
+  declare module.exports: any
+}
+
+declare module '@material-ui/core/Snackbar' {
+  declare module.exports: any
+}
+
+declare module '@material-ui/core/CircularProgress' {
+  declare module.exports: any
+}
+
 declare module '@material-ui/core/Link' {
   declare module.exports: any
 }
