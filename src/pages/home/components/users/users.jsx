@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import makeStyles from '@material-ui/styles/makeStyles'
 
-import { constants, selectors } from '../../../../redux'
+import { actions, constants, selectors } from '../../../../redux'
 import { Account } from '../../../../components'
 
 import { TabPanel } from './components'
@@ -31,17 +31,22 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  users: Array<{ name: string, email: string, address: string, info: string }>,
+  users: Array<{ nick: string, email: string, name: string, address: string }>,
+  selectedUser: string,
+  selectUserAction: Function,
 }
 
 const Users = (props: Props): React.Node => {
-  const { users } = props
+  const { users, selectedUser, selectUserAction } = props
   const styles = useStyles()
   const [value, setValue] = React.useState(0)
   const handleChange = React.useMemo(
     () => (event, newValue) => setValue(newValue),
     [value],
   )
+  const onHandleChangeRadio = (user) => {
+    selectUserAction(user)
+  }
 
   return (
     <Box className={styles.root} pt={2}>
@@ -66,9 +71,9 @@ const Users = (props: Props): React.Node => {
             <Grid item key={user.email}>
               <Account
                 name="user"
-                selectedValue="test"
+                selectedValue={selectedUser}
                 value={user.email}
-                handleChangeRadio={() => {}}
+                handleChangeRadio={onHandleChangeRadio}
                 userNickname={user.nick}
                 userName={user.name}
                 userEmail={user.email}
@@ -96,6 +101,12 @@ const Users = (props: Props): React.Node => {
 
 const mapStateToProps = (state) => ({
   users: selectors.users.getEntitiesSelector(state),
+  selectedUser: selectors.user.getSelectedUserSelector(state),
 })
 
-export default (connect(mapStateToProps)(Users): React.AbstractComponent<Props>)
+const mapDispatchToProps = { selectUserAction: actions.user.selectUser }
+
+export default (connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Users): React.AbstractComponent<Props>)

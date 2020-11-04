@@ -54,6 +54,8 @@ function Account({
     setAnchorEl(null)
   }
 
+  const handleChange = () => handleChangeRadio(value)
+
   const avatar = <Avatar aria-label={userNickname}>{userNickname}</Avatar>
 
   const action = (
@@ -86,7 +88,7 @@ function Account({
         <Grid item xs={1}>
           <Radio
             checked={selectedValue === value}
-            onChange={handleChangeRadio}
+            onChange={handleChange}
             value={value}
             name={name}
             inputProps={{ 'aria-label': value }}
