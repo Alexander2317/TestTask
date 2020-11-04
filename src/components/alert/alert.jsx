@@ -7,7 +7,7 @@ import MUIAlert from '@material-ui/lab/Alert'
 type Props = {
   open: boolean,
   textSuccess: string,
-  error: Object<{ message: string }>,
+  error?: { message: string },
 }
 
 const Alert = ({ open, error, textSuccess }: Props): React.Node => (
@@ -17,5 +17,11 @@ const Alert = ({ open, error, textSuccess }: Props): React.Node => (
     </MUIAlert>
   </Snackbar>
 )
+
+Alert.defaultProps = {
+  error: {
+    message: '',
+  },
+}
 
 export default Alert

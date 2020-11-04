@@ -2,14 +2,37 @@
 
 import { actionTypes } from '../constants'
 
+type User = {
+  id: string,
+  name: string,
+  email: string,
+  address: string,
+  info: string,
+}
+
+type State = {
+  loading: boolean,
+  alert: boolean,
+  entities: Array<Object>,
+  error?: { message: string },
+}
+
+type Action = {
+  type: string,
+  payload: {
+    user: User,
+  },
+  error?: { message: string },
+}
+
 const initialState = {
   loading: false,
   alert: false,
   entities: [],
-  error: false,
+  error: { message: '' },
 }
 
-const users = (state = initialState, action) => {
+const users = (state: State = initialState, action: Action): State => {
   const { type, payload, error } = action
 
   switch (type) {
@@ -18,7 +41,7 @@ const users = (state = initialState, action) => {
         ...state,
         loading: true,
         alert: false,
-        error: false,
+        error: { message: '' },
       }
     case actionTypes.ADD_USER_SUCCESS:
       return {
@@ -26,7 +49,7 @@ const users = (state = initialState, action) => {
         loading: false,
         alert: true,
         entities: [...state.entities, payload.user],
-        error: false,
+        error: { message: '' },
       }
     case actionTypes.ADD_USER_ERROR:
       return {

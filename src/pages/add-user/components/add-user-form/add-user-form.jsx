@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 type Props = {
   loading: boolean,
   alert: boolean,
-  error: Object<{ message: string }>,
+  error?: { message: string },
   addUserAction: Function,
 }
 
@@ -167,6 +167,10 @@ const AddUserForm = ({
   )
 }
 
+AddUserForm.defaultProps = {
+  error: { message: '' },
+}
+
 const mapStateToProps = (state) => ({
   loading: selectors.users.getLoadingSelector(state),
   alert: selectors.users.getLoadedSelector(state),
@@ -174,4 +178,7 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = { addUserAction: actions.users.addUser }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddUserForm)
+export default (connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddUserForm): React.AbstractComponent<Props>)

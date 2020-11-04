@@ -86,11 +86,19 @@ declare module '@material-ui/core/MenuItem' {
   declare module.exports: any
 }
 
+declare module '@material-ui/core/Button' {
+  declare module.exports: any
+}
+
 declare module '@material-ui/icons' {
   declare module.exports: any
 }
 
 declare module '@material-ui/icons/MoreVert' {
+  declare module.exports: any
+}
+
+declare module '@material-ui/icons/Add' {
   declare module.exports: any
 }
 

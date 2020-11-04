@@ -97,4 +97,4 @@ const mapStateToProps = (state) => ({
   users: selectors.users.getEntitiesSelector(state),
 })
 
-export default connect(mapStateToProps)(Users)
+export default (connect(mapStateToProps)(Users): React.AbstractComponent<Props>)
