@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import makeStyles from '@material-ui/styles/makeStyles'
@@ -77,6 +78,13 @@ const Users = (props: Props): React.Node => {
           spacing={1}
           className={styles.usersContainer}
         >
+          {!users.length && (
+            <Grid item>
+              <Typography variant="h6">
+                Empty user list. Add someone...
+              </Typography>
+            </Grid>
+          )}
           {users.map((user) => (
             <Grid item key={user.id}>
               <Account
