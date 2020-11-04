@@ -98,6 +98,14 @@ declare module '@material-ui/icons/MoreVert' {
   declare module.exports: any
 }
 
+declare module '@material-ui/icons/Check' {
+  declare module.exports: any
+}
+
+declare module '@material-ui/icons/Close' {
+  declare module.exports: any
+}
+
 declare module '@material-ui/icons/Add' {
   declare module.exports: any
 }

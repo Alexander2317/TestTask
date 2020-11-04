@@ -31,13 +31,20 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  users: Array<{ nick: string, email: string, name: string, address: string }>,
+  users: Array<{
+    id: string,
+    nick: string,
+    email: string,
+    name: string,
+    address: string,
+  }>,
   selectedUser: string,
   selectUserAction: Function,
+  deleteUserAction: Function,
 }
 
 const Users = (props: Props): React.Node => {
-  const { users, selectedUser, selectUserAction } = props
+  const { users, selectedUser, selectUserAction, deleteUserAction } = props
   const styles = useStyles()
   const [value, setValue] = React.useState(0)
   const handleChange = React.useMemo(
@@ -46,6 +53,9 @@ const Users = (props: Props): React.Node => {
   )
   const onHandleChangeRadio = (user) => {
     selectUserAction(user)
+  }
+  const onHandleDeleteUser = (user) => {
+    deleteUserAction(user)
   }
 
   return (
@@ -68,12 +78,14 @@ const Users = (props: Props): React.Node => {
           className={styles.usersContainer}
         >
           {users.map((user) => (
-            <Grid item key={user.email}>
+            <Grid item key={user.id}>
               <Account
+                id={user.id}
                 name="user"
                 selectedValue={selectedUser}
                 value={user.email}
                 handleChangeRadio={onHandleChangeRadio}
+                handleDeleteUser={onHandleDeleteUser}
                 userNickname={user.nick}
                 userName={user.name}
                 userEmail={user.email}
@@ -104,7 +116,10 @@ const mapStateToProps = (state) => ({
   selectedUser: selectors.user.getSelectedUserSelector(state),
 })
 
-const mapDispatchToProps = { selectUserAction: actions.user.selectUser }
+const mapDispatchToProps = {
+  selectUserAction: actions.user.selectUser,
+  deleteUserAction: actions.users.deleteUser,
+}
 
 export default (connect(
   mapStateToProps,

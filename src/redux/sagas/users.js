@@ -32,8 +32,16 @@ export function* addUserSaga({ payload: { user } }) {
   })
 }
 
+export function* deleteUserSaga({ payload: { user } }) {
+  yield put({
+    type: actionTypes.DELETE_USER_SUCCESS,
+    payload: { user },
+  })
+}
+
 function* saga() {
   yield takeEvery(actionTypes.ADD_USER_START, addUserSaga)
+  yield takeEvery(actionTypes.DELETE_USER_START, deleteUserSaga)
 }
 
 export default saga

@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import CloseIcon from '@material-ui/icons/Close'
+import CheckIcon from '@material-ui/icons/Check'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import makeStyles from '@material-ui/styles/makeStyles'
@@ -19,14 +21,17 @@ import makeStyles from '@material-ui/styles/makeStyles'
 const useStyles = makeStyles({
   root: {
     maxWidth: 320,
+    minHeight: 132,
   },
 })
 
 type Props = {
+  id: string,
   name: string,
   selectedValue: string,
   value: string,
   handleChangeRadio: Function,
+  handleDeleteUser: Function,
   userNickname: string,
   userName: string,
   userEmail: string,
@@ -34,10 +39,12 @@ type Props = {
 }
 
 function Account({
+  id,
   name,
   selectedValue,
   value,
   handleChangeRadio,
+  handleDeleteUser,
   userNickname,
   userName,
   userEmail,
@@ -45,16 +52,26 @@ function Account({
 }: Props): React.Node {
   const styles = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [showDeleteAlert, setShowDeleteAlert] = React.useState(false)
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
+  const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => {
     setAnchorEl(null)
+    setShowDeleteAlert(false)
   }
 
   const handleChange = () => handleChangeRadio(value)
+
+  const checkDeleteUser = () => setShowDeleteAlert(true)
+  const handleCancelDelete = () => {
+    setAnchorEl(null)
+    setShowDeleteAlert(false)
+  }
+  const handleDelete = () => {
+    handleDeleteUser(id)
+    setAnchorEl(null)
+    setShowDeleteAlert(false)
+  }
 
   const avatar = <Avatar aria-label={userNickname}>{userNickname}</Avatar>
 
@@ -74,10 +91,23 @@ function Account({
           <EditIcon />
           &nbsp; Edit
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={checkDeleteUser}>
           <DeleteIcon />
           &nbsp; Delete
         </MenuItem>
+        {showDeleteAlert && (
+          <MenuItem>
+            <Typography variant="body2">
+              Are you really want to delete <strong>{userEmail}</strong>?
+            </Typography>
+            <IconButton aria-label="agree-delete" onClick={handleDelete}>
+              <CheckIcon />
+            </IconButton>
+            <IconButton aria-label="cancel-delete" onClick={handleCancelDelete}>
+              <CloseIcon />
+            </IconButton>
+          </MenuItem>
+        )}
       </Menu>
     </div>
   )

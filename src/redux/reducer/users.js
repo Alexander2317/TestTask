@@ -58,6 +58,14 @@ const users = (state: State = initialState, action: Action): State => {
         loading: false,
         alert: true,
       }
+    case actionTypes.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        error: { message: '' },
+        loading: false,
+        alert: false,
+        entities: state.entities.filter((user) => user.id !== payload.user),
+      }
     case actionTypes.ADD_USER_HIDE_ALERT:
       return {
         ...state,
