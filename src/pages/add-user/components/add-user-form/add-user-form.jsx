@@ -18,6 +18,13 @@ import { constants, actions, selectors } from '../../../../redux'
 
 const validate = (values: Object): Object => {
   const errors = {}
+
+  if (!values.nick) {
+    errors.nick = 'Nickname is required'
+  }
+  if (values.nick.length > constants.base.MAX_NICKNAME_LENGTH) {
+    errors.nick = `Nickname shouldn't be more ${constants.base.MAX_NICKNAME_LENGTH} symbols`
+  }
   if (!values.email) {
     errors.email = 'Email is required'
   } else if (!EmailValidator.validate(values.email)) {
@@ -29,9 +36,6 @@ const validate = (values: Object): Object => {
   }
   if (!values.address) {
     errors.address = 'Address is required'
-  }
-  if (values.info.length >= constants.base.MAX_INFORMATION_LENGTH) {
-    errors.info = `Information shouldn't be more ${constants.base.MAX_INFORMATION_LENGTH} symbols`
   }
 
   return errors
@@ -63,7 +67,6 @@ const AddUserForm = ({
   addUserAction,
 }: Props): React.Node => {
   const style = useStyles()
-
   return (
     <Grid
       container
@@ -78,22 +81,32 @@ const AddUserForm = ({
         </Box>
         <Formik
           initialValues={{
+            nick: '',
             email: '',
             name: '',
             address: '',
-            info: '',
           }}
           validate={validate}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(false)
             addUserAction(values)
-            if (!error?.message) {
+            if (!error.message) {
               resetForm()
             }
           }}
         >
           {({ submitForm, isSubmitting }) => (
             <Form>
+              <Box mb={1}>
+                <Field
+                  className={style.field}
+                  component={TextField}
+                  type="text"
+                  name="nick"
+                  label="Short Nickname"
+                  variant="outlined"
+                />
+              </Box>
               <Box mb={1}>
                 <Field
                   className={style.field}
@@ -121,17 +134,6 @@ const AddUserForm = ({
                   type="text"
                   name="address"
                   label="Address"
-                  variant="outlined"
-                />
-              </Box>
-              <Box mb={1}>
-                <Field
-                  className={style.field}
-                  multiline
-                  component={TextField}
-                  type="textarea"
-                  name="info"
-                  label="Info"
                   variant="outlined"
                 />
               </Box>

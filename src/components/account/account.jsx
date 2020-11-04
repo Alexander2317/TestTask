@@ -27,6 +27,7 @@ type Props = {
   selectedValue: string,
   value: string,
   handleChangeRadio: Function,
+  userNickname: string,
   userName: string,
   userEmail: string,
   userAddress: string,
@@ -37,6 +38,7 @@ function Account({
   selectedValue,
   value,
   handleChangeRadio,
+  userNickname,
   userName,
   userEmail,
   userAddress,
@@ -52,7 +54,7 @@ function Account({
     setAnchorEl(null)
   }
 
-  const avatar = <Avatar aria-label={value}>{value}</Avatar>
+  const avatar = <Avatar aria-label={userNickname}>{userNickname}</Avatar>
 
   const action = (
     <div>

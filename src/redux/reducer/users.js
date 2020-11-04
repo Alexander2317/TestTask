@@ -4,10 +4,10 @@ import { actionTypes } from '../constants'
 
 type User = {
   id: string,
-  name: string,
+  nick: string,
   email: string,
+  name: string,
   address: string,
-  info: string,
 }
 
 type State = {

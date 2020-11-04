@@ -63,12 +63,13 @@ const Users = (props: Props): React.Node => {
           className={styles.usersContainer}
         >
           {users.map((user) => (
-            <Grid item>
+            <Grid item key={user.email}>
               <Account
-                name={user.name}
+                name="user"
                 selectedValue="test"
                 value={user.email}
                 handleChangeRadio={() => {}}
+                userNickname={user.nick}
                 userName={user.name}
                 userEmail={user.email}
                 userAddress={user.address}
