@@ -11,21 +11,22 @@ export function* addUserSaga({ payload: { user } }) {
     ({ email }) => email === user.email,
   )
 
-  if (isExistEmail) {
-    yield put({
-      type: actionTypes.ADD_USER_ERROR,
-      error: {
-        message: 'Email is already exist',
-      },
-    })
-  } else {
+  if (!isExistEmail) {
     yield put({
       type: actionTypes.ADD_USER_SUCCESS,
       payload: {
         user: { id, ...user },
       },
     })
+  } else {
+    yield put({
+      type: actionTypes.ADD_USER_ERROR,
+      error: {
+        message: 'Email is already exist',
+      },
+    })
   }
+
   yield delay(base.DURATION_ALERT)
   yield put({
     type: actionTypes.ADD_USER_HIDE_ALERT,
@@ -39,9 +40,22 @@ export function* deleteUserSaga({ payload: { user } }) {
   })
 }
 
+export function* editUserSaga({ payload: { user } }) {
+  yield put({
+    type: actionTypes.EDIT_USER_SUCCESS,
+    payload: { user },
+  })
+
+  yield delay(base.DURATION_ALERT)
+  yield put({
+    type: actionTypes.EDIT_USER_HIDE_ALERT,
+  })
+}
+
 function* saga() {
   yield takeEvery(actionTypes.ADD_USER_START, addUserSaga)
   yield takeEvery(actionTypes.DELETE_USER_START, deleteUserSaga)
+  yield takeEvery(actionTypes.EDIT_USER_START, editUserSaga)
 }
 
 export default saga

@@ -36,6 +36,7 @@ const users = (state: State = initialState, action: Action): State => {
   const { type, payload, error } = action
 
   switch (type) {
+    case actionTypes.EDIT_USER_START:
     case actionTypes.ADD_USER_START:
       return {
         ...state,
@@ -51,6 +52,20 @@ const users = (state: State = initialState, action: Action): State => {
         entities: [...state.entities, payload.user],
         error: { message: '' },
       }
+    case actionTypes.EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        alert: true,
+        entities: state.entities.map((user) => {
+          if (user.id === payload.user.id) {
+            return payload.user
+          }
+          return user
+        }),
+        error: { message: '' },
+      }
+    case actionTypes.EDIT_USER_ERROR:
     case actionTypes.ADD_USER_ERROR:
       return {
         ...state,
@@ -66,6 +81,7 @@ const users = (state: State = initialState, action: Action): State => {
         alert: false,
         entities: state.entities.filter((user) => user.id !== payload.user),
       }
+    case actionTypes.EDIT_USER_HIDE_ALERT:
     case actionTypes.ADD_USER_HIDE_ALERT:
       return {
         ...state,

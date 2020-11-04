@@ -2,9 +2,11 @@ import { createSelector } from 'reselect'
 
 import utils from './utils'
 
-const getUser = (key) => (state) => state.user[key]
-
 export const getSelectedUserSelector = createSelector(
-  getUser('selectedUser'),
+  utils.getStoreKey('user', 'selectedUser'),
+  utils.getIdentifier,
+)
+export const getUserInformationSelector = createSelector(
+  utils.getStoreKey('user', 'userInformation'),
   utils.getIdentifier,
 )

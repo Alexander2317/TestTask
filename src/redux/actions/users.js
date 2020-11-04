@@ -13,3 +13,8 @@ export const deleteUser = (user: string): Action => ({
   type: actionTypes.DELETE_USER_START,
   payload: { user },
 })
+
+export const editUser = (user: string): Action => ({
+  type: actionTypes.EDIT_USER_START,
+  payload: { user },
+})

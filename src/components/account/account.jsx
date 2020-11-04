@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Radio from '@material-ui/core/Radio'
 import Card from '@material-ui/core/Card'
@@ -17,6 +18,8 @@ import CheckIcon from '@material-ui/icons/Check'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import makeStyles from '@material-ui/styles/makeStyles'
+
+import { constants } from '../../redux'
 
 const useStyles = makeStyles({
   root: {
@@ -87,7 +90,7 @@ function Account({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem component={Link} to={`${constants.routes.editUser}/${id}`}>
           <EditIcon />
           &nbsp; Edit
         </MenuItem>
