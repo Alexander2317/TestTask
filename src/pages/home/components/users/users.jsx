@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import makeStyles from '@material-ui/styles/makeStyles'
 
+import type { User } from '../../../../types/common-types'
 import { actions, constants, selectors } from '../../../../redux'
 import { Account } from '../../../../components'
 
@@ -32,13 +33,7 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  users: Array<{
-    id: string,
-    nick: string,
-    email: string,
-    name: string,
-    address: string,
-  }>,
+  users: Array<User>,
   selectedUser: string,
   selectUserAction: Function,
   deleteUserAction: Function,
@@ -52,11 +47,11 @@ const Users = (props: Props): React.Node => {
     () => (event, newValue) => setValue(newValue),
     [value],
   )
-  const onHandleChangeRadio = (user) => {
-    selectUserAction(user)
+  const onHandleChangeRadio = (userEmail) => {
+    selectUserAction(userEmail)
   }
-  const onHandleDeleteUser = (user) => {
-    deleteUserAction(user)
+  const onHandleDeleteUser = (userId) => {
+    deleteUserAction(userId)
   }
 
   return (
