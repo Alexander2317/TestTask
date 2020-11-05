@@ -1,22 +1,16 @@
 // @flow
 
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import AddIcon from '@material-ui/icons/Add'
 import makeStyles from '@material-ui/styles/makeStyles'
 
 import type { User } from '../../../../types/common-types'
-import { actions, constants, selectors } from '../../../../redux'
-import { Account } from '../../../../components'
+import { actions, selectors } from '../../../../redux'
 
-import { TabPanel } from './components'
+import { TabPanel, TabUsers, TabPayment } from './components'
 
 const a11yProps = (index: number) => ({
   id: `tab-${index}`,
@@ -41,8 +35,18 @@ type Props = {
 
 const Users = (props: Props): React.Node => {
   const { users, selectedUser, selectUserAction, deleteUserAction } = props
+  const checkInitialSelectUser = selectedUser === '' && users.length !== 0
+
+  React.useEffect(() => {
+    if (checkInitialSelectUser) {
+      selectUserAction(users[0].email)
+    }
+  }, [checkInitialSelectUser])
+
   const styles = useStyles()
+
   const [value, setValue] = React.useState(0)
+
   const handleChange = React.useMemo(
     () => (event, newValue) => setValue(newValue),
     [value],
@@ -64,51 +68,18 @@ const Users = (props: Props): React.Node => {
       >
         <Tab label="Accounts" {...a11yProps(0)} />
         <Tab label="Payment" {...a11yProps(1)} />
+        {/* <Tab label="Payment" disabled={!selectedUser} {...a11yProps(1)} /> */}
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Grid
-          container
-          alignItems="center"
-          justify="flex-start"
-          spacing={1}
-          className={styles.usersContainer}
-        >
-          {!users.length && (
-            <Grid item>
-              <Typography variant="h6">
-                Empty user list. Add someone...
-              </Typography>
-            </Grid>
-          )}
-          {users.map((user) => (
-            <Grid item key={user.id}>
-              <Account
-                id={user.id}
-                name="user"
-                selectedValue={selectedUser}
-                value={user.email}
-                handleChangeRadio={onHandleChangeRadio}
-                handleDeleteUser={onHandleDeleteUser}
-                userNickname={user.nick}
-                userName={user.name}
-                userEmail={user.email}
-                userAddress={user.address}
-              />
-            </Grid>
-          ))}
-          <Grid item xs={2}>
-            <IconButton
-              aria-label="add-user"
-              component={Link}
-              to={constants.routes.addUser}
-            >
-              <AddIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        <TabUsers
+          users={users}
+          selectedUser={selectedUser}
+          onHandleChangeRadio={onHandleChangeRadio}
+          onHandleDeleteUser={onHandleDeleteUser}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        test 2
+        <TabPayment />
       </TabPanel>
     </Box>
   )
