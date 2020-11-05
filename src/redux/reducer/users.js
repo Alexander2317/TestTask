@@ -1,5 +1,7 @@
 // @flow
 
+import { LOCATION_CHANGE } from 'connected-react-router'
+
 import { actionTypes } from '../constants'
 
 type User = {
@@ -81,6 +83,7 @@ const users = (state: State = initialState, action: Action): State => {
         alert: false,
         entities: state.entities.filter((user) => user.id !== payload.user),
       }
+    case LOCATION_CHANGE:
     case actionTypes.EDIT_USER_HIDE_ALERT:
     case actionTypes.ADD_USER_HIDE_ALERT:
       return {

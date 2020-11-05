@@ -92,7 +92,7 @@ const EditUserForm = ({
             }
           }}
         >
-          {({ submitForm, isSubmitting }) => (
+          {({ submitForm, isSubmitting, dirty }) => (
             <Form>
               <Box mb={1}>
                 <Field
@@ -106,6 +106,8 @@ const EditUserForm = ({
               </Box>
               <Box mb={1}>
                 <Field
+                  disabled
+                  readOnly
                   className={style.field}
                   component={TextField}
                   type="email"
@@ -139,7 +141,7 @@ const EditUserForm = ({
                   className={style.button}
                   variant="contained"
                   color="primary"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !dirty}
                   onClick={submitForm}
                 >
                   {loading ? (
