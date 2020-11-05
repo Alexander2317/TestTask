@@ -15,7 +15,7 @@ export function* getUserSaga({ payload: { user } }) {
   const userInformation = getUsers.find(({ id }) => id === Number(user))
   yield put({
     type: actionTypes.GET_USER_SUCCESS,
-    payload: { user: { ...userInformation } },
+    payload: { userInformation },
   })
 }
 

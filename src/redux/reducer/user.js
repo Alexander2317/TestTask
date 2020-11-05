@@ -12,7 +12,8 @@ type State = {
 type Action = {
   type: string,
   payload: {
-    user: string | Object,
+    user: string,
+    userInformation: Object,
   },
 }
 
@@ -41,7 +42,7 @@ const user = (state: State = initialState, action: Action): State => {
     case actionTypes.GET_USER_SUCCESS:
       return {
         ...state,
-        userInformation: payload.user,
+        userInformation: payload.userInformation,
       }
     default:
       return state
