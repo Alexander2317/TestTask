@@ -1,3 +1,5 @@
+// @flow
+
 import { call, put, takeEvery, select, delay } from 'redux-saga/effects'
 
 import { generateId } from '../../utils'

@@ -1,3 +1,5 @@
+// @flow
+
 const paymentMethods = [
   {
     type: 'paypal',

@@ -1,3 +1,5 @@
+// @flow
+
 const currencySymbols = {
   usd: '$',
   rub: '₽',

@@ -1,3 +1,5 @@
+// @flow
+
 import { shoes1, shoes2 } from '../assets/images/products'
 
 const products = [

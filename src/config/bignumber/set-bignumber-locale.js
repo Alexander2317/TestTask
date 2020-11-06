@@ -1,3 +1,5 @@
+// @flow
+
 import BigNumber from 'bignumber.js'
 
 import * as locales from './locales-format'

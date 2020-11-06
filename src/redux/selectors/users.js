@@ -1,3 +1,5 @@
+// @flow
+
 import { createSelector } from 'reselect'
 
 import utils from './utils'

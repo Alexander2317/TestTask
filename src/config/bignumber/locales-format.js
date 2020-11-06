@@ -1,3 +1,5 @@
+// @flow
+
 export const en = {
   decimalSeparator: '.',
   groupSeparator: ',',

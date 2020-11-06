@@ -1,3 +1,5 @@
+// @flow
+
 import paymentMethods from './payment-methods'
 import users from './users'
 import products from './products'

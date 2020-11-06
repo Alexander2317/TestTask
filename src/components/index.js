@@ -1,3 +1,5 @@
+// @flow
+
 import Account from './account'
 import Alert from './alert'
 

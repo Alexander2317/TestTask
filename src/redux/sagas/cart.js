@@ -1,3 +1,5 @@
+// @flow
+
 import { put, select, takeEvery } from 'redux-saga/effects'
 import BigNumber from 'bignumber.js'
 
