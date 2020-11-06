@@ -35,6 +35,12 @@ const TabPayment = (props: Props): React.Node => {
   const { setPaymentMethodAction, selectedPaymentMethod, entities } = props
   const styles = useStyles()
 
+  React.useEffect(() => {
+    if (!selectedPaymentMethod && entities.length) {
+      setPaymentMethodAction(entities[0].type)
+    }
+  }, [!selectedPaymentMethod])
+
   return (
     <>
       {entities.map((payment) => (

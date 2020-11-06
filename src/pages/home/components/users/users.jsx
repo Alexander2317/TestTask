@@ -51,12 +51,8 @@ const Users = (props: Props): React.Node => {
     () => (event, newValue) => setValue(newValue),
     [value],
   )
-  const onHandleChangeRadio = (userEmail) => {
-    selectUserAction(userEmail)
-  }
-  const onHandleDeleteUser = (userId) => {
-    deleteUserAction(userId)
-  }
+  const onHandleChangeRadio = (userEmail) => selectUserAction(userEmail)
+  const onHandleDeleteUser = (userId) => deleteUserAction(userId)
 
   return (
     <Box className={styles.root} pt={2}>
