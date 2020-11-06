@@ -2,6 +2,7 @@
 
 import { LOCATION_CHANGE } from 'connected-react-router'
 
+import { users as usersConfig } from '../../config'
 import { actionTypes } from '../constants'
 
 type User = {
@@ -30,7 +31,7 @@ type Action = {
 const initialState = {
   loading: false,
   alert: false,
-  entities: [],
+  entities: usersConfig,
   error: { message: '' },
 }
 

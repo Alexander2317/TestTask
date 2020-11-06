@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import CreditCardIcon from '@material-ui/icons/CreditCard'
 import makeStyles from '@material-ui/styles/makeStyles'
 
+import type { Payment } from '../../../../../../types/common-types'
 import paypalIcon from '../../../../../../assets/icons/paypal.svg'
 import { actions, selectors } from '../../../../../../redux'
 
@@ -18,43 +19,38 @@ const useStyles = makeStyles({
   },
 })
 
+const iconsPaymentMethod = (styles) => ({
+  paypal: <div className={styles.iconPayPal} />,
+  visa: <CreditCardIcon />,
+  balance: '',
+})
+
 type Props = {
   setPaymentMethodAction: Function,
   selectedPaymentMethod: string,
+  entities: Array<Payment>,
 }
 
 const TabPayment = (props: Props): React.Node => {
-  const { setPaymentMethodAction, selectedPaymentMethod } = props
+  const { setPaymentMethodAction, selectedPaymentMethod, entities } = props
   const styles = useStyles()
 
   return (
-    <div>
-      <PaymentMethod
-        selectedPayment={selectedPaymentMethod}
-        value="balance"
-        name="name"
-        text="Balance"
-        handleChange={setPaymentMethodAction}
-      />
-      <br />
-      <PaymentMethod
-        selectedPayment={selectedPaymentMethod}
-        value="visa"
-        name="name"
-        text="Visa"
-        icon={<CreditCardIcon />}
-        handleChange={setPaymentMethodAction}
-      />
-      <br />
-      <PaymentMethod
-        selectedPayment={selectedPaymentMethod}
-        value="paypal"
-        name="name"
-        text="PayPal"
-        icon={<div className={styles.iconPayPal} />}
-        handleChange={setPaymentMethodAction}
-      />
-    </div>
+    <>
+      {entities.map((payment) => (
+        <React.Fragment key={payment.type}>
+          <PaymentMethod
+            selectedPayment={selectedPaymentMethod}
+            value={payment.type}
+            name="payment-type"
+            text={payment.text}
+            icon={iconsPaymentMethod(styles)[payment.icon]}
+            handleChange={setPaymentMethodAction}
+          />
+          <br />
+        </React.Fragment>
+      ))}
+    </>
   )
 }
 
@@ -62,6 +58,7 @@ const mapStateToProps = (state) => ({
   selectedPaymentMethod: selectors.payment.getSelectedPaymentMethodSelector(
     state,
   ),
+  entities: selectors.payment.getEntitiesSelector(state),
 })
 
 const mapDispatchToProps = {

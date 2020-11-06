@@ -1,9 +1,12 @@
 // @flow
 
+import type { Payment } from '../../types/common-types'
+import { paymentMethods } from '../../config'
 import { actionTypes } from '../constants'
 
 type State = {
   selectedPaymentMethod: string,
+  entities: Array<Payment>,
 }
 
 type Action = {
@@ -15,6 +18,7 @@ type Action = {
 
 const initialState = {
   selectedPaymentMethod: '',
+  entities: paymentMethods,
 }
 
 const payment = (state: State = initialState, action: Action): State => {

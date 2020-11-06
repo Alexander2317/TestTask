@@ -26,6 +26,9 @@ const useStyles = makeStyles({
     maxWidth: 320,
     minHeight: 132,
   },
+  card: {
+    cursor: 'pointer',
+  },
 })
 
 type Props = {
@@ -133,6 +136,8 @@ function Account({
             action={action}
             title={userName}
             subheader={userEmail}
+            onClick={handleChange}
+            className={styles.card}
           />
           <CardContent>
             <Typography variant="body2" component="p">

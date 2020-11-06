@@ -1,5 +1,10 @@
 // @flow
 
+export type Action = {
+  type: string,
+  payload?: any,
+}
+
 export type User = {
   id: string,
   nick: string,
@@ -8,7 +13,10 @@ export type User = {
   address: string,
 }
 
-export type Action = {
+export type Payment = {
   type: string,
-  payload?: any,
+  text: string,
+  icon: string,
+  vat: number,
+  commission: number,
 }
