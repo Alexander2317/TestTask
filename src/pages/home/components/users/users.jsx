@@ -67,8 +67,7 @@ const Users = (props: Props): React.Node => {
         aria-label="navigation"
       >
         <Tab label="Accounts" {...a11yProps(0)} />
-        <Tab label="Payment" {...a11yProps(1)} />
-        {/* <Tab label="Payment" disabled={!selectedUser} {...a11yProps(1)} /> */}
+        <Tab label="Payment" disabled={!selectedUser} {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <TabUsers

@@ -6,6 +6,13 @@ import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Radio from '@material-ui/core/Radio'
 import Typography from '@material-ui/core/Typography'
+import makeStyles from '@material-ui/styles/makeStyles'
+
+const useStyles = makeStyles({
+  info: {
+    cursor: 'pointer',
+  },
+})
 
 type Props = {
   selectedPayment: string,
@@ -18,6 +25,9 @@ type Props = {
 
 const PaymentMethod = (props: Props): React.Node => {
   const { selectedPayment, value, name, icon, text, handleChange } = props
+  const style = useStyles()
+  const onHandleChange = () => handleChange(value)
+
   return (
     <Paper>
       <Box px={1}>
@@ -25,13 +35,21 @@ const PaymentMethod = (props: Props): React.Node => {
           <Grid item>
             <Radio
               checked={selectedPayment === value}
-              onChange={handleChange}
+              onChange={onHandleChange}
               value={value}
               name={name}
               inputProps={{ 'aria-label': value }}
             />
           </Grid>
-          <Grid item container alignItems="center" xs={11} spacing={1}>
+          <Grid
+            item
+            container
+            alignItems="center"
+            xs={11}
+            spacing={1}
+            onClick={onHandleChange}
+            className={style.info}
+          >
             {icon && <Grid item>{icon}</Grid>}
             <Grid item>
               <Typography variant="body1" color="textSecondary">
