@@ -33,13 +33,14 @@ type Props = {
 
 const TabPayment = (props: Props): React.Node => {
   const { setPaymentMethodAction, selectedPaymentMethod, entities } = props
+  const checkInitialPaymentMethod = !selectedPaymentMethod && entities.length
   const styles = useStyles()
 
   React.useEffect(() => {
-    if (!selectedPaymentMethod && entities.length) {
+    if (checkInitialPaymentMethod) {
       setPaymentMethodAction(entities[0].type)
     }
-  }, [!selectedPaymentMethod])
+  }, [checkInitialPaymentMethod])
 
   return (
     <>
