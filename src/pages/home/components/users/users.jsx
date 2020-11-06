@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import makeStyles from '@material-ui/styles/makeStyles'
 
-import type { User } from '../../../../types/common-types'
+import type { Payment, User } from '../../../../types/common-types'
 import { actions, selectors } from '../../../../redux'
 
 import { TabPanel, TabUsers, TabPayment } from './components'
@@ -31,17 +31,33 @@ type Props = {
   selectedUser: string,
   selectUserAction: Function,
   deleteUserAction: Function,
+  setPaymentMethodAction: Function,
+  selectedPaymentMethod: string,
+  payments: Array<Payment>,
 }
 
 const Users = (props: Props): React.Node => {
-  const { users, selectedUser, selectUserAction, deleteUserAction } = props
+  const {
+    users,
+    selectedUser,
+    selectUserAction,
+    deleteUserAction,
+    selectedPaymentMethod,
+    setPaymentMethodAction,
+    payments,
+  } = props
   const checkInitialSelectUser = selectedUser === '' && users.length !== 0
+  const checkInitialPaymentMethod = !selectedPaymentMethod && payments.length
 
   React.useEffect(() => {
     if (checkInitialSelectUser) {
       selectUserAction(users[0].email)
     }
-  }, [checkInitialSelectUser])
+
+    if (checkInitialPaymentMethod) {
+      setPaymentMethodAction(payments[0].type)
+    }
+  }, [checkInitialSelectUser, checkInitialPaymentMethod])
 
   const styles = useStyles()
 
@@ -74,7 +90,11 @@ const Users = (props: Props): React.Node => {
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TabPayment />
+        <TabPayment
+          selectedPayment={selectedPaymentMethod}
+          payments={payments}
+          handleChange={setPaymentMethodAction}
+        />
       </TabPanel>
     </Box>
   )
@@ -83,11 +103,16 @@ const Users = (props: Props): React.Node => {
 const mapStateToProps = (state) => ({
   users: selectors.users.getEntitiesSelector(state),
   selectedUser: selectors.user.getSelectedUserSelector(state),
+  selectedPaymentMethod: selectors.payment.getSelectedPaymentMethodSelector(
+    state,
+  ),
+  payments: selectors.payment.getEntitiesSelector(state),
 })
 
 const mapDispatchToProps = {
   selectUserAction: actions.user.selectUser,
   deleteUserAction: actions.users.deleteUser,
+  setPaymentMethodAction: actions.payment.setPaymentMethod,
 }
 
 export default (connect(

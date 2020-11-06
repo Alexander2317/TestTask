@@ -5,6 +5,7 @@ import users from './users'
 import user from './user'
 import payment from './payment'
 import products from './products'
+import cart from './cart'
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -13,6 +14,7 @@ const createRootReducer = (history) =>
     user,
     payment,
     products,
+    cart,
   })
 
 export default createRootReducer

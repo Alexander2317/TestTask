@@ -29,3 +29,10 @@ export type Product = {
   price: number,
   currency: string,
 }
+
+export type Cart = {
+  subtotal: number,
+  commission: number,
+  vat: number,
+  total: number,
+}

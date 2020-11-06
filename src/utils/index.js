@@ -1,3 +1,4 @@
 import generateId from './generate-id'
+import countInterest from './count-interest'
 
-export { generateId }
+export { generateId, countInterest }
