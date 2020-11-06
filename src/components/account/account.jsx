@@ -24,6 +24,7 @@ import { constants } from '../../redux'
 const useStyles = makeStyles({
   root: {
     maxWidth: 320,
+    minWidth: 320,
     minHeight: 132,
   },
   card: {

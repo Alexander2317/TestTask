@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router'
 import users from './users'
 import user from './user'
 import payment from './payment'
+import products from './products'
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -11,6 +12,7 @@ const createRootReducer = (history) =>
     users,
     user,
     payment,
+    products,
   })
 
 export default createRootReducer

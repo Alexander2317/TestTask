@@ -20,3 +20,12 @@ export type Payment = {
   vat: number,
   commission: number,
 }
+
+export type Product = {
+  id: number,
+  name: string,
+  brand: string,
+  image: string,
+  price: number,
+  currency: string,
+}
