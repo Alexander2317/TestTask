@@ -7,9 +7,12 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { configureStore, history } from './redux'
+import { bignumberConfig } from './config'
 
 import Pages from './pages'
 import './vendor.css'
+
+bignumberConfig.setBignumberLocale()
 
 const store = configureStore()
 
