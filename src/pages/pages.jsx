@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Redirect, Switch } from 'react-router'
 
 import Home from './home'
 import AddUser from './add-user'
@@ -15,6 +15,8 @@ const { routes } = constants
 
 const Pages = (): React.Node => (
   <Switch>
+    <Redirect exact strict from="/" to={routes.home} />
+    <Redirect exact strict from={`${routes.baseRoute}/`} to={routes.home} />
     <Route exact strict path={routes.home} component={Home} />
     <Route exact strict path={routes.addUser} component={AddUser} />
     <Route exact strict path={`${routes.editUser}/:id`} component={EditUser} />

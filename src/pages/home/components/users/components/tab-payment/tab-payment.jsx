@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   iconPayPal: {
     width: 24,
     height: 24,
-    background: `transparent url('${paypalIcon}') no-repeat center center / cover`,
+    background: `transparent url('/${paypalIcon}') no-repeat center center / cover`,
   },
 })
 

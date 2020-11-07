@@ -36,7 +36,7 @@ const Product = (props: ProductType): React.Node => {
       className={style.root}
     >
       <Grid item>
-        <img src={image} alt={brand} className={style.image} />
+        <img src={`/${image}`} alt={brand} className={style.image} />
       </Grid>
       <Grid item>
         <Grid
