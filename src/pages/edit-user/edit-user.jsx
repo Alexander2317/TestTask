@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import makeStyles from '@material-ui/styles/makeStyles'
 
+import type { User } from '../../types/common-types'
 import { actions, selectors } from '../../redux'
 
 import { EditUserForm } from './components'
@@ -29,7 +30,7 @@ type Props = {
   match: {
     params: { id: string },
   },
-  userInformation: Object,
+  userInformation: User,
   getUserAction: Function,
 }
 
@@ -66,4 +67,4 @@ const mapDispatchToProps = { getUserAction: actions.user.getUser }
 export default (connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EditUser): React.AbstractComponent<Props>)
+)(EditUser): React.AbstractComponent<any>)

@@ -5,11 +5,11 @@ import { createSelector } from 'reselect'
 import helpers from './helpers'
 
 const storeKey = 'user'
-export const getSelectedUserSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'selectedUser'),
+export const getSelectedUserSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'selectedUser' }),
   helpers.getIdentifier,
 )
-export const getUserInformationSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'userInformation'),
+export const getUserInformationSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'userInformation' }),
   helpers.getIdentifier,
 )

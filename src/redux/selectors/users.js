@@ -5,19 +5,19 @@ import { createSelector } from 'reselect'
 import helpers from './helpers'
 
 const storeKey = 'users'
-export const getEntitiesSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'entities'),
+export const getEntitiesSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'entities' }),
   helpers.getIdentifier,
 )
-export const getLoadingSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'loading'),
+export const getLoadingSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'loading' }),
   helpers.getIdentifier,
 )
-export const getLoadedSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'alert'),
+export const getLoadedSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'alert' }),
   helpers.getIdentifier,
 )
-export const getErrorSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'error'),
+export const getErrorSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'error' }),
   helpers.getIdentifier,
 )

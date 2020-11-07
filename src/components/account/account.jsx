@@ -61,7 +61,8 @@ function Account({
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [showDeleteAlert, setShowDeleteAlert] = React.useState(false)
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget)
+  const handleClick = (event: SyntheticEvent<HTMLButtonElement>) =>
+    setAnchorEl(event.currentTarget)
   const handleClose = () => {
     setAnchorEl(null)
     setShowDeleteAlert(false)

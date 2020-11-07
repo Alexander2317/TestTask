@@ -5,19 +5,19 @@ import { createSelector } from 'reselect'
 import helpers from './helpers'
 
 const storeKey = 'cart'
-export const getSubtotalSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'subtotal'),
+export const getSubtotalSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'subtotal' }),
   helpers.getIdentifier,
 )
-export const getCommissionSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'commission'),
+export const getCommissionSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'commission' }),
   helpers.getIdentifier,
 )
-export const getVATSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'vat'),
+export const getVATSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'vat' }),
   helpers.getIdentifier,
 )
-export const getTotalSelector = createSelector(
-  helpers.getStoreKey(storeKey, 'total'),
+export const getTotalSelector: Function = createSelector(
+  helpers.getStoreKey({ name: storeKey, key: 'total' }),
   helpers.getIdentifier,
 )

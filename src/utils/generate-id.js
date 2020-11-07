@@ -1,5 +1,5 @@
 // @flow
 
-const generateId = () => Date.now()
+const generateId = (): number => Date.now()
 
 export default generateId

@@ -157,4 +157,4 @@ const mapDispatchToProps = { editUserAction: actions.users.editUser }
 export default (connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EditUserForm): React.AbstractComponent<Props>)
+)(EditUserForm): React.AbstractComponent<any>)

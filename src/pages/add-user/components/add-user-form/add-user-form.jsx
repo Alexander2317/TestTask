@@ -158,4 +158,4 @@ const mapDispatchToProps = { addUserAction: actions.users.addUser }
 export default (connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AddUserForm): React.AbstractComponent<Props>)
+)(AddUserForm): React.AbstractComponent<any>)

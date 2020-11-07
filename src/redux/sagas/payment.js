@@ -2,10 +2,12 @@
 
 import { put, select, takeEvery } from 'redux-saga/effects'
 
+import type { Payment } from '../../types/common-types'
+
 import { actionTypes } from '../constants'
 import { payment } from '../selectors'
 
-type selectPaymentMethodProps = {
+type SelectPaymentMethodProps = {
   payload: {
     selectedPaymentMethod: string,
   },
@@ -13,8 +15,10 @@ type selectPaymentMethodProps = {
 
 function* selectPaymentMethod({
   payload: { selectedPaymentMethod },
-}: selectPaymentMethodProps) {
-  const getEntitiesPayment = yield select(payment.getEntitiesSelector)
+}: SelectPaymentMethodProps): Generator<Object, void, any> {
+  const getEntitiesPayment: Array<Payment> = yield select(
+    payment.getEntitiesSelector,
+  )
   const paymentMethodParams = getEntitiesPayment.find(
     ({ type }) => type === selectedPaymentMethod,
   )
@@ -24,7 +28,7 @@ function* selectPaymentMethod({
   })
 }
 
-function* saga() {
+function* saga(): Generator<Function, void, any> {
   yield takeEvery(actionTypes.SELECT_PAYMENT_METHOD_START, selectPaymentMethod)
 }
 

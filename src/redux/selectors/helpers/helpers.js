@@ -1,6 +1,12 @@
 // @flow
 
 export const getIdentifier = (x: string): string => x
-export const getStoreKey = (name: string, key: string) => (
-  state: string,
+
+type GetStoreKeyProps = {
+  name: string,
+  key: string,
+}
+
+export const getStoreKey = ({ name, key }: GetStoreKeyProps): Object => (
+  state: Object,
 ): any => state[name][key]

@@ -64,7 +64,8 @@ const Users = (props: Props): React.Node => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = React.useMemo(
-    () => (event, newValue) => setValue(newValue),
+    () => (event: SyntheticEvent<HTMLButtonElement>, newValue) =>
+      setValue(newValue),
     [value],
   )
   const onHandleChangeRadio = (userEmail) => selectUserAction(userEmail)

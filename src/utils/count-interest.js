@@ -5,7 +5,13 @@ import BigNumber from 'bignumber.js'
 import { bignumberConfig } from '../config'
 
 const PERCENT = 100
-const countInterest = ({ value, percent }) =>
+
+type CountInterestProps = {
+  value: string | number,
+  percent: string | number,
+}
+
+const countInterest = ({ value, percent }: CountInterestProps): number =>
   new BigNumber(value)
     .multipliedBy(percent)
     .div(PERCENT)

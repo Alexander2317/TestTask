@@ -9,7 +9,7 @@ import payment from './payment'
 import products from './products'
 import cart from './cart'
 
-const createRootReducer = (history) =>
+const createRootReducer = (history: Object): Function =>
   combineReducers({
     router: connectRouter(history),
     users,
