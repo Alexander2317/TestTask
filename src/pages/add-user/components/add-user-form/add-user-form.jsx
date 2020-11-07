@@ -14,7 +14,7 @@ import { TextField } from 'formik-material-ui'
 
 import { Alert } from '../../../../components'
 import { constants, actions, selectors } from '../../../../redux'
-import { validateFormSchema } from '../../../../utils'
+import { validation } from '../../../../utils'
 
 const useStyles = makeStyles({
   container: {
@@ -61,7 +61,7 @@ const AddUserForm = ({
             name: '',
             address: '',
           }}
-          validate={validateFormSchema}
+          validationSchema={validation.schema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(false)
             addUserAction(values)

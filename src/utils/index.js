@@ -2,6 +2,6 @@
 
 import generateId from './generate-id'
 import countInterest from './count-interest'
-import validateFormSchema from './validate-form-schema'
+import validation from './validation'
 
-export { generateId, countInterest, validateFormSchema }
+export { generateId, countInterest, validation }
