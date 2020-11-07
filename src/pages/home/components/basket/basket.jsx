@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
+import makeStyles from '@material-ui/styles/makeStyles'
 
 import type {
   Payment,
@@ -15,6 +16,14 @@ import type {
 import { constants, selectors } from '../../../../redux'
 
 import { Product, SumInfo } from '../../../../components'
+
+const useStyles = makeStyles((theme) => ({
+  [theme.breakpoints.down('md')]: {
+    root: {
+      padding: theme.spacing(3),
+    },
+  },
+}))
 
 type Props = {
   selectedUser: string,
@@ -34,46 +43,49 @@ const Basket = ({
   currentCommission,
   currentVAT,
   currentTotal,
-}: Props): React.Node => (
-  <Box pt={1}>
-    <Box pt={2} mb={0.8}>
-      <Typography variant="h5">Shopping Cart</Typography>
+}: Props): React.Node => {
+  const styles = useStyles()
+  return (
+    <Box pt={1} className={styles.root}>
+      <Box pt={2} mb={0.8}>
+        <Typography variant="h5">Shopping Cart</Typography>
+      </Box>
+      <Divider />
+      <Box py={3}>
+        {products?.map((product) => (
+          <Product {...product} key={product.id} />
+        ))}
+      </Box>
+      <Divider />
+      <Box py={3}>
+        <SumInfo text="Subtotal" currency="usd" sum={currentSubtotal} />
+        {!!commission && (
+          <SumInfo
+            text={`Payment processing services ${commission}%`}
+            currency="usd"
+            sum={currentCommission}
+          />
+        )}
+        {!!vat && (
+          <SumInfo text={`VAT ${vat}%`} currency="usd" sum={currentVAT} />
+        )}
+      </Box>
+      <Divider />
+      <Box py={3}>
+        <SumInfo text="Total" currency="usd" sum={currentTotal} />
+      </Box>
+      <Button
+        component={Link}
+        to={constants.routes.thanks}
+        color="primary"
+        variant="contained"
+        disabled={!selectedUser}
+      >
+        Complete order
+      </Button>
     </Box>
-    <Divider />
-    <Box py={3}>
-      {products?.map((product) => (
-        <Product {...product} key={product.id} />
-      ))}
-    </Box>
-    <Divider />
-    <Box py={3}>
-      <SumInfo text="Subtotal" currency="usd" sum={currentSubtotal} />
-      {!!commission && (
-        <SumInfo
-          text={`Payment processing services ${commission}%`}
-          currency="usd"
-          sum={currentCommission}
-        />
-      )}
-      {!!vat && (
-        <SumInfo text={`VAT ${vat}%`} currency="usd" sum={currentVAT} />
-      )}
-    </Box>
-    <Divider />
-    <Box py={3}>
-      <SumInfo text="Total" currency="usd" sum={currentTotal} />
-    </Box>
-    <Button
-      component={Link}
-      to={constants.routes.thanks}
-      color="primary"
-      variant="contained"
-      disabled={!selectedUser}
-    >
-      Complete order
-    </Button>
-  </Box>
-)
+  )
+}
 
 const mapStateToProps = (state) => ({
   selectedUser: selectors.user.getSelectedUserSelector(state),

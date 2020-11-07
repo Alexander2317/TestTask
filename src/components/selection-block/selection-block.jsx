@@ -41,20 +41,14 @@ const SelectionBlock = (props: Props): React.Node => {
               inputProps={{ 'aria-label': value }}
             />
           </Grid>
-          <Grid
-            item
-            container
-            alignItems="center"
-            xs={11}
-            spacing={1}
-            onClick={onHandleChange}
-            className={style.info}
-          >
-            {icon && <Grid item>{icon}</Grid>}
-            <Grid item>
-              <Typography variant="body1" color="textSecondary">
-                {text}
-              </Typography>
+          <Grid item onClick={onHandleChange} className={style.info}>
+            <Grid container alignItems="center">
+              {icon && <Grid item>{icon}</Grid>}
+              <Grid item>
+                <Typography variant="body1" color="textSecondary">
+                  {text}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
