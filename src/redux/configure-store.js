@@ -14,7 +14,7 @@ const composeEnhancers = composeWithDevTools({
   name: base.NAME_APPLICATION,
 })
 
-const configureStore = (preloadedState = {}) => {
+const configureStore = (preloadedState: Object = {}): Object => {
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     createRootReducer(history),

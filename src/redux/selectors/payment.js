@@ -2,18 +2,18 @@
 
 import { createSelector } from 'reselect'
 
-import utils from './utils'
+import helpers from './helpers'
 
 const storeKey = 'payment'
 export const getSelectedPaymentMethodSelector = createSelector(
-  utils.getStoreKey(storeKey, 'selectedPaymentMethod'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'selectedPaymentMethod'),
+  helpers.getIdentifier,
 )
 export const getPaymentMethodParamsSelector = createSelector(
-  utils.getStoreKey(storeKey, 'paymentMethodParams'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'paymentMethodParams'),
+  helpers.getIdentifier,
 )
 export const getEntitiesSelector = createSelector(
-  utils.getStoreKey(storeKey, 'entities'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'entities'),
+  helpers.getIdentifier,
 )

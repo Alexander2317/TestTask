@@ -2,22 +2,22 @@
 
 import { createSelector } from 'reselect'
 
-import utils from './utils'
+import helpers from './helpers'
 
 const storeKey = 'users'
 export const getEntitiesSelector = createSelector(
-  utils.getStoreKey(storeKey, 'entities'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'entities'),
+  helpers.getIdentifier,
 )
 export const getLoadingSelector = createSelector(
-  utils.getStoreKey(storeKey, 'loading'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'loading'),
+  helpers.getIdentifier,
 )
 export const getLoadedSelector = createSelector(
-  utils.getStoreKey(storeKey, 'alert'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'alert'),
+  helpers.getIdentifier,
 )
 export const getErrorSelector = createSelector(
-  utils.getStoreKey(storeKey, 'error'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'error'),
+  helpers.getIdentifier,
 )

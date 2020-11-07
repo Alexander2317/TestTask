@@ -6,7 +6,15 @@ import { generateId } from '../../utils'
 import { actionTypes, base } from '../constants'
 import { users } from '../selectors'
 
-export function* addUserSaga({ payload: { user } }) {
+import type { User } from '../../types/common-types'
+
+type addUserSagaProps = {
+  payload: {
+    user: User,
+  },
+}
+
+export function* addUserSaga({ payload: { user } }: addUserSagaProps) {
   const id = yield call(generateId)
   const getUsersEntities = yield select(users.getEntitiesSelector)
   const isExistEmail = getUsersEntities.find(
@@ -35,14 +43,26 @@ export function* addUserSaga({ payload: { user } }) {
   })
 }
 
-export function* deleteUserSaga({ payload: { user } }) {
+type deleteUserSagaProps = {
+  payload: {
+    userId: string,
+  },
+}
+
+export function* deleteUserSaga({ payload: { userId } }: deleteUserSagaProps) {
   yield put({
     type: actionTypes.DELETE_USER_SUCCESS,
-    payload: { user },
+    payload: { userId },
   })
 }
 
-export function* editUserSaga({ payload: { user } }) {
+type editUserSagaProps = {
+  payload: {
+    user: User,
+  },
+}
+
+export function* editUserSaga({ payload: { user } }: editUserSagaProps) {
   yield put({
     type: actionTypes.EDIT_USER_SUCCESS,
     payload: { user },

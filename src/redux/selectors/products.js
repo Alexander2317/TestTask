@@ -2,10 +2,10 @@
 
 import { createSelector } from 'reselect'
 
-import utils from './utils'
+import helpers from './helpers'
 
 const storeKey = 'products'
 export const getEntitiesSelector = createSelector(
-  utils.getStoreKey(storeKey, 'entities'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'entities'),
+  helpers.getIdentifier,
 )

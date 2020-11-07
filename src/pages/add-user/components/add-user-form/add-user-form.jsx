@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { Link as LinkRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EmailValidator from 'email-validator'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
@@ -15,31 +14,7 @@ import { TextField } from 'formik-material-ui'
 
 import { Alert } from '../../../../components'
 import { constants, actions, selectors } from '../../../../redux'
-
-const validate = (values: Object): Object => {
-  const errors = {}
-
-  if (!values.nick) {
-    errors.nick = 'Nickname is required'
-  }
-  if (values.nick.length > constants.base.MAX_NICKNAME_LENGTH) {
-    errors.nick = `Nickname shouldn't be more ${constants.base.MAX_NICKNAME_LENGTH} symbols`
-  }
-  if (!values.email) {
-    errors.email = 'Email is required'
-  } else if (!EmailValidator.validate(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-
-  if (!values.name) {
-    errors.name = 'Name is required'
-  }
-  if (!values.address) {
-    errors.address = 'Address is required'
-  }
-
-  return errors
-}
+import { validateFormSchema } from '../../../../utils'
 
 const useStyles = makeStyles({
   container: {
@@ -86,7 +61,7 @@ const AddUserForm = ({
             name: '',
             address: '',
           }}
-          validate={validate}
+          validate={validateFormSchema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(false)
             addUserAction(values)

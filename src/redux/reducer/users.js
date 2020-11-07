@@ -24,6 +24,7 @@ type Action = {
   type: string,
   payload: {
     user: User,
+    userId: string,
   },
   error?: { message: string },
 }
@@ -82,7 +83,7 @@ const users = (state: State = initialState, action: Action): State => {
         error: { message: '' },
         loading: false,
         alert: false,
-        entities: state.entities.filter((user) => user.id !== payload.user),
+        entities: state.entities.filter((user) => user.id !== payload.userId),
       }
     case LOCATION_CHANGE:
     case actionTypes.EDIT_USER_HIDE_ALERT:

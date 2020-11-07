@@ -9,9 +9,9 @@ export const addUser = (user: User): Action => ({
   payload: { user },
 })
 
-export const deleteUser = (user: string): Action => ({
+export const deleteUser = (userId: string): Action => ({
   type: actionTypes.DELETE_USER_START,
-  payload: { user },
+  payload: { userId },
 })
 
 export const editUser = (user: string): Action => ({

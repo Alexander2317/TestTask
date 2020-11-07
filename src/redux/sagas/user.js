@@ -5,14 +5,28 @@ import { put, takeEvery, select } from 'redux-saga/effects'
 import { actionTypes } from '../constants'
 import { users } from '../selectors'
 
-export function* selectUserSaga({ payload: { userEmail } }) {
+type selectUserSagaProps = {
+  payload: {
+    userEmail: string,
+  },
+}
+
+export function* selectUserSaga({
+  payload: { userEmail },
+}: selectUserSagaProps) {
   yield put({
     type: actionTypes.SELECT_USER_SUCCESS,
     payload: { userEmail },
   })
 }
 
-export function* getUserSaga({ payload: { userId } }) {
+type getUserSagaProps = {
+  payload: {
+    userId: string,
+  },
+}
+
+export function* getUserSaga({ payload: { userId } }: getUserSagaProps) {
   const getUsers = yield select(users.getEntitiesSelector)
   const userInformation = getUsers.find(({ id }) => id === Number(userId))
   yield put({

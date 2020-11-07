@@ -2,22 +2,22 @@
 
 import { createSelector } from 'reselect'
 
-import utils from './utils'
+import helpers from './helpers'
 
 const storeKey = 'cart'
 export const getSubtotalSelector = createSelector(
-  utils.getStoreKey(storeKey, 'subtotal'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'subtotal'),
+  helpers.getIdentifier,
 )
 export const getCommissionSelector = createSelector(
-  utils.getStoreKey(storeKey, 'commission'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'commission'),
+  helpers.getIdentifier,
 )
 export const getVATSelector = createSelector(
-  utils.getStoreKey(storeKey, 'vat'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'vat'),
+  helpers.getIdentifier,
 )
 export const getTotalSelector = createSelector(
-  utils.getStoreKey(storeKey, 'total'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'total'),
+  helpers.getIdentifier,
 )

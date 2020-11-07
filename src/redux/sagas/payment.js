@@ -5,7 +5,15 @@ import { put, select, takeEvery } from 'redux-saga/effects'
 import { actionTypes } from '../constants'
 import { payment } from '../selectors'
 
-function* selectPaymentMethod({ payload: { selectedPaymentMethod } }) {
+type selectPaymentMethodProps = {
+  payload: {
+    selectedPaymentMethod: string,
+  },
+}
+
+function* selectPaymentMethod({
+  payload: { selectedPaymentMethod },
+}: selectPaymentMethodProps) {
   const getEntitiesPayment = yield select(payment.getEntitiesSelector)
   const paymentMethodParams = getEntitiesPayment.find(
     ({ type }) => type === selectedPaymentMethod,

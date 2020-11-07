@@ -5,8 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import makeStyles from '@material-ui/styles/makeStyles'
 
-import type { Product as ProductType } from '../../../../../../types/common-types'
-import { currencySymbols } from '../../../../../../config'
+import type { Product as ProductType } from '../../types/common-types'
+import { currencySymbols } from '../../config'
 
 const useStyles = makeStyles({
   root: {

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 })
 
 type Props = {
-  selectedPayment: string,
+  selectedValue: string,
   value: string,
   name: string,
   icon?: React.Node,
@@ -23,8 +23,8 @@ type Props = {
   text: string,
 }
 
-const PaymentMethod = (props: Props): React.Node => {
-  const { selectedPayment, value, name, icon, text, handleChange } = props
+const SelectionBlock = (props: Props): React.Node => {
+  const { selectedValue, value, name, icon, text, handleChange } = props
   const style = useStyles()
   const onHandleChange = () => handleChange(value)
 
@@ -34,7 +34,7 @@ const PaymentMethod = (props: Props): React.Node => {
         <Grid container alignItems="center" spacing={1}>
           <Grid item>
             <Radio
-              checked={selectedPayment === value}
+              checked={selectedValue === value}
               onChange={onHandleChange}
               value={value}
               name={name}
@@ -63,8 +63,8 @@ const PaymentMethod = (props: Props): React.Node => {
   )
 }
 
-PaymentMethod.defaultProps = {
+SelectionBlock.defaultProps = {
   icon: null,
 }
 
-export default PaymentMethod
+export default SelectionBlock

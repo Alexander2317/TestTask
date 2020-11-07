@@ -12,7 +12,7 @@ import type {
 } from '../../../../types/common-types'
 import { selectors } from '../../../../redux'
 
-import { Product, Info } from './components'
+import { Product, SumInfo } from '../../../../components'
 
 type Props = {
   products: Array<ProductType>,
@@ -43,19 +43,21 @@ const Basket = ({
     </Box>
     <Divider />
     <Box py={3}>
-      <Info text="Subtotal" currency="usd" sum={currentSubtotal} />
+      <SumInfo text="Subtotal" currency="usd" sum={currentSubtotal} />
       {!!commission && (
-        <Info
+        <SumInfo
           text={`Payment processing services ${commission}%`}
           currency="usd"
           sum={currentCommission}
         />
       )}
-      {!!vat && <Info text={`VAT ${vat}%`} currency="usd" sum={currentVAT} />}
+      {!!vat && (
+        <SumInfo text={`VAT ${vat}%`} currency="usd" sum={currentVAT} />
+      )}
     </Box>
     <Divider />
     <Box py={3}>
-      <Info text="Total" currency="usd" sum={currentTotal} />
+      <SumInfo text="Total" currency="usd" sum={currentTotal} />
     </Box>
   </Box>
 )

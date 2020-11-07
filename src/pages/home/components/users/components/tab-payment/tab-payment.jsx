@@ -10,7 +10,7 @@ import type { Payment } from '../../../../../../types/common-types'
 import paypalIcon from '../../../../../../assets/icons/paypal.svg'
 import { constants } from '../../../../../../redux'
 
-import { PaymentMethod } from './components'
+import { SelectionBlock } from '../../../../../../components'
 
 const useStyles = makeStyles({
   iconPayPal: {
@@ -18,12 +18,6 @@ const useStyles = makeStyles({
     height: 24,
     background: `transparent url('${paypalIcon}') no-repeat center center / cover`,
   },
-})
-
-const iconsPaymentMethod = (styles) => ({
-  paypal: <div className={styles.iconPayPal} />,
-  visa: <CreditCardIcon />,
-  balance: '',
 })
 
 type Props = {
@@ -36,16 +30,22 @@ const TabPayment = (props: Props): React.Node => {
   const { selectedPayment, payments, handleChange } = props
   const styles = useStyles()
 
+  const iconsPaymentMethod = {
+    paypal: <div className={styles.iconPayPal} />,
+    visa: <CreditCardIcon />,
+    balance: '',
+  }
+
   return (
     <>
       {payments?.map((payment) => (
         <React.Fragment key={payment.type}>
-          <PaymentMethod
-            selectedPayment={selectedPayment}
+          <SelectionBlock
+            selectedValue={selectedPayment}
             value={payment.type}
             name="payment-type"
             text={payment.text}
-            icon={iconsPaymentMethod(styles)[payment.icon]}
+            icon={iconsPaymentMethod[payment.icon]}
             handleChange={handleChange}
           />
           <br />

@@ -2,14 +2,14 @@
 
 import { createSelector } from 'reselect'
 
-import utils from './utils'
+import helpers from './helpers'
 
 const storeKey = 'user'
 export const getSelectedUserSelector = createSelector(
-  utils.getStoreKey(storeKey, 'selectedUser'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'selectedUser'),
+  helpers.getIdentifier,
 )
 export const getUserInformationSelector = createSelector(
-  utils.getStoreKey(storeKey, 'userInformation'),
-  utils.getIdentifier,
+  helpers.getStoreKey(storeKey, 'userInformation'),
+  helpers.getIdentifier,
 )

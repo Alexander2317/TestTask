@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import makeStyles from '@material-ui/styles/makeStyles'
 
-import { currencySymbols } from '../../../../../../config'
+import { currencySymbols } from '../../config'
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +19,7 @@ type Props = {
   currency: string,
 }
 
-const Info = ({ text, sum, currency }: Props): React.Node => {
+const SumInfo = ({ text, sum, currency }: Props): React.Node => {
   const style = useStyles()
   return (
     <Grid container spacing={2} justify="space-between" className={style.root}>
@@ -36,4 +36,4 @@ const Info = ({ text, sum, currency }: Props): React.Node => {
   )
 }
 
-export default Info
+export default SumInfo
