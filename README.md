@@ -9,6 +9,10 @@ Settings for launch
 3. Run the command in the console ```yarn start```
 4. Open the project [in browser](http://localhost:3000)
 
+Demo
+-----------------------------------
+https://alexander2317.github.io/test-task-prnews/
+
 Task
 -----------------------------------
 You can find the task conditions <a href="https://github.com/Alexander2317/test-task-prnews/blob/master/task/CheckoutTask.pdf">here</a>
