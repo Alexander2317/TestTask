@@ -113,15 +113,24 @@ function Account({
         </MenuItem>
         {showDeleteAlert && (
           <MenuItem>
-            <Typography variant="body2">
-              Are you really want to delete <strong>{userEmail}</strong>?
-            </Typography>
-            <IconButton aria-label="agree-delete" onClick={handleDelete}>
-              <CheckIcon />
-            </IconButton>
-            <IconButton aria-label="cancel-delete" onClick={handleCancelDelete}>
-              <CloseIcon />
-            </IconButton>
+            <Grid container alignItems="center" spacing={1}>
+              <Grid item>
+                <Typography variant="body2">
+                  Are you really want to delete <strong>{userEmail}</strong>?
+                </Typography>
+              </Grid>
+              <Grid item>
+                <IconButton aria-label="agree-delete" onClick={handleDelete}>
+                  <CheckIcon />
+                </IconButton>
+                <IconButton
+                  aria-label="cancel-delete"
+                  onClick={handleCancelDelete}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Grid>
+            </Grid>
           </MenuItem>
         )}
       </Menu>

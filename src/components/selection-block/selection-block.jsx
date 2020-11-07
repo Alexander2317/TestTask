@@ -42,7 +42,7 @@ const SelectionBlock = (props: Props): React.Node => {
             />
           </Grid>
           <Grid item onClick={onHandleChange} className={style.info}>
-            <Grid container alignItems="center">
+            <Grid container alignItems="center" spacing={1}>
               {icon && <Grid item>{icon}</Grid>}
               <Grid item>
                 <Typography variant="body1" color="textSecondary">
