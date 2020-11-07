@@ -1,18 +1,18 @@
 {
-  "name": "test-task",
+  "name": "test-task-prnews",
   "version": "0.0.1",
   "main": "index.js",
   "author": "Alexander2317",
   "license": "ISC",
   "homepage": "https://github.com/Alexander2317/TestTask#readme",
-  "description": "It's test task for some company",
+  "description": "It's test task for prnews company",
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Alexander2317/TestTask.git"
+    "url": "git+https://github.com/Alexander2317/test-task-prnews.git"
   },
   "bugs": {
-    "url": "https://github.com/Alexander2317/TestTask/issues"
+    "url": "https://github.com/Alexander2317/test-task-prnews/issues"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",

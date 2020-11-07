@@ -1,4 +1,4 @@
-<h1>Simple boilerplate for React Applications</h1>
+<h1>Test task for PRNEWS</h1>
 
 Settings for launch
 -----------------------------------
@@ -9,44 +9,10 @@ Settings for launch
 3. Run the command in the console ```yarn start```
 4. Open the project [in browser](http://localhost:3000)
 
-
-Main command
+Task
 -----------------------------------
+You can find the task conditions <a href="https://github.com/Alexander2317/test-task-prnews/blob/master/task/CheckoutTask.pdf">here</a>
 
-```
-lint:js - check correct js code
-lint:css - check correct css code
-lint - base command wich combine lint:js and lint:css
-fix:js - formatting your js code
-fix:css - formatting your css code
-fix - base command wich combine fix:js and fix:css
-flow - check types
-test - run all unit tests
-test:report - generate report about tests
-start - command to start development server
-build - build project
-analyze - analyze your bundel project
-```
-
-For example ```yarn start``` - launch server
-It's not necessary to reload the page because we use Hot Module Replacement (HMR)
-
-
-Main libraries
- -----------------------------------
-
-- react 16.13.1
-- react-dom 16.13.1
-- redux
-- redux-saga
-- reselect
-- flow.js
-- postcss
-- babel
-- prettier
-- eslint
-- stylelint
-- HMR
-- Webpack 4
-- Jest
-- Enzyme
+Caveats
+-----------------------------------
+Sorry, I don't have components tests because of enzyme-adapter-react-17 isn't released yet
