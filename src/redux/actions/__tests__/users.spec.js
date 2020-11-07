@@ -13,10 +13,11 @@ describe('user Actions', () => {
       name: 'name',
       address: 'address',
     }
+    const resetForm = jest.fn
 
-    expect(addUser(user)).toStrictEqual({
+    expect(addUser({ user, resetForm })).toStrictEqual({
       type: actionTypes.ADD_USER_START,
-      payload: { user },
+      payload: { user, resetForm },
     })
   })
 

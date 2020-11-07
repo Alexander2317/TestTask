@@ -4,9 +4,13 @@ import type { User, Action } from '../../types/common-types'
 
 import { actionTypes } from '../constants'
 
-export const addUser = (user: User): Action => ({
+type PropsAddUser = {
+  user: User,
+  resetForm: Function,
+}
+export const addUser = ({ user, resetForm }: PropsAddUser): Action => ({
   type: actionTypes.ADD_USER_START,
-  payload: { user },
+  payload: { user, resetForm },
 })
 
 export const editUser = (user: User): Action => ({

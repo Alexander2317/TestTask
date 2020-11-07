@@ -13,11 +13,12 @@ import { selectUserSaga, clearSelectUserSaga } from './user'
 type AddUserSagaProps = {
   payload: {
     user: User,
+    resetForm: Function,
   },
 }
 
 export function* addUserSaga({
-  payload: { user },
+  payload: { user, resetForm },
 }: AddUserSagaProps): Generator<Object, void, any> {
   const id = yield call(generateId)
   const getUsersEntities: Array<User> = yield select(users.getEntitiesSelector)
@@ -32,6 +33,7 @@ export function* addUserSaga({
         user: { id, ...user },
       },
     })
+    yield call(resetForm)
   } else {
     yield put({
       type: actionTypes.ADD_USER_ERROR,

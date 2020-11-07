@@ -64,10 +64,7 @@ const AddUserForm = ({
           validationSchema={validation.schema}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setSubmitting(false)
-            addUserAction(values)
-            if (!error?.message) {
-              resetForm()
-            }
+            addUserAction({ user: values, resetForm })
           }}
         >
           {({ submitForm, isSubmitting }) => (

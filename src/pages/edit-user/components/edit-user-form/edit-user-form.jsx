@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 type Props = {
   loading: boolean,
   alert: boolean,
-  error?: { message: string },
   editUserAction: Function,
   user: Object,
 }
@@ -40,7 +39,6 @@ type Props = {
 const EditUserForm = ({
   loading,
   alert,
-  error,
   editUserAction,
   user,
 }: Props): React.Node => {
@@ -60,12 +58,9 @@ const EditUserForm = ({
         <Formik
           initialValues={user}
           validationSchema={validation.schema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          onSubmit={(values, { setSubmitting }) => {
             setSubmitting(false)
             editUserAction(values)
-            if (!error?.message) {
-              resetForm()
-            }
           }}
         >
           {({ submitForm, isSubmitting, dirty }) => (
@@ -138,20 +133,15 @@ const EditUserForm = ({
             </Form>
           )}
         </Formik>
-        <Alert open={alert} error={error} textSuccess="Success edited" />
+        <Alert open={alert} textSuccess="Success edited" />
       </Grid>
     </Grid>
   )
 }
 
-EditUserForm.defaultProps = {
-  error: { message: '' },
-}
-
 const mapStateToProps = (state) => ({
   loading: selectors.users.getLoadingSelector(state),
   alert: selectors.users.getLoadedSelector(state),
-  error: selectors.users.getErrorSelector(state),
 })
 const mapDispatchToProps = { editUserAction: actions.users.editUser }
 
