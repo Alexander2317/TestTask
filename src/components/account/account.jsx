@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     minWidth: 320,
     minHeight: 132,
   },
-  card: {
+  avatar: {
     cursor: 'pointer',
   },
 })
@@ -81,7 +81,15 @@ function Account({
     setShowDeleteAlert(false)
   }
 
-  const avatar = <Avatar aria-label={userNickname}>{userNickname}</Avatar>
+  const avatar = (
+    <Avatar
+      aria-label={userNickname}
+      className={styles.avatar}
+      onClick={handleChange}
+    >
+      {userNickname}
+    </Avatar>
+  )
 
   const action = (
     <div>
@@ -138,8 +146,6 @@ function Account({
             action={action}
             title={userName}
             subheader={userEmail}
-            onClick={handleChange}
-            className={styles.card}
           />
           <CardContent>
             <Typography variant="body2" component="p">

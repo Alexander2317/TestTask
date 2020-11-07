@@ -7,6 +7,12 @@ import type { User } from '../../types/common-types'
 import { actionTypes } from '../constants'
 import { users } from '../selectors'
 
+export function* clearSelectUserSaga(): Generator<Object, void, void> {
+  yield put({
+    type: actionTypes.SELECT_USER_CLEAR,
+  })
+}
+
 type SelectUserSagaProps = {
   payload: {
     userEmail: string,

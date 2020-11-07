@@ -7,21 +7,23 @@ import makeStyles from '@material-ui/styles/makeStyles'
 
 import { Users, Basket } from './components'
 
-const useStyles = makeStyles({
-  root: {
-    height: '100vh',
+const useStyles = makeStyles((theme) => ({
+  [theme.breakpoints.up('md')]: {
+    root: {
+      height: '100vh',
+    },
   },
-})
+}))
 
 const Home = (): React.Node => {
   const styles = useStyles()
   return (
     <Paper className={styles.root}>
       <Grid container spacing={0}>
-        <Grid item xs={8}>
+        <Grid item md={8} xs={12}>
           <Users />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item md={4} xs={12}>
           <Basket />
         </Grid>
       </Grid>

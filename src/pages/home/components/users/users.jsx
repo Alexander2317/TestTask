@@ -17,14 +17,16 @@ const a11yProps = (index: number) => ({
   'aria-controls': `tabpanel-${index}`,
 })
 
-const useStyles = makeStyles({
-  root: {
-    height: '100vh',
+const useStyles = makeStyles((theme) => ({
+  [theme.breakpoints.up('md')]: {
+    root: {
+      height: '100vh',
+    },
   },
   usersContainer: {
     width: 'auto',
   },
-})
+}))
 
 type Props = {
   users: Array<User>,

@@ -2,19 +2,22 @@
 
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
+import Button from '@material-ui/core/Button'
 
 import type {
   Payment,
   Product as ProductType,
 } from '../../../../types/common-types'
-import { selectors } from '../../../../redux'
+import { constants, selectors } from '../../../../redux'
 
 import { Product, SumInfo } from '../../../../components'
 
 type Props = {
+  selectedUser: string,
   products: Array<ProductType>,
   paymentParams: Payment,
   currentSubtotal: number,
@@ -24,6 +27,7 @@ type Props = {
 }
 
 const Basket = ({
+  selectedUser,
   products,
   paymentParams: { commission, vat },
   currentSubtotal,
@@ -59,10 +63,20 @@ const Basket = ({
     <Box py={3}>
       <SumInfo text="Total" currency="usd" sum={currentTotal} />
     </Box>
+    <Button
+      component={Link}
+      to={constants.routes.thanks}
+      color="primary"
+      variant="contained"
+      disabled={!selectedUser}
+    >
+      Complete order
+    </Button>
   </Box>
 )
 
 const mapStateToProps = (state) => ({
+  selectedUser: selectors.user.getSelectedUserSelector(state),
   products: selectors.products.getEntitiesSelector(state),
   paymentParams: selectors.payment.getPaymentMethodParamsSelector(state),
   currentSubtotal: selectors.cart.getSubtotalSelector(state),

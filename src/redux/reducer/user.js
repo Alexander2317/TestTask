@@ -28,6 +28,7 @@ const user = (state: State = initialState, action: Action): State => {
   switch (type) {
     case actionTypes.GET_USER_START:
     case actionTypes.SELECT_USER_START:
+    case actionTypes.SELECT_USER_CLEAR:
     case actionTypes.EDIT_USER_SUCCESS:
       return {
         ...state,

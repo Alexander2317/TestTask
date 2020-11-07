@@ -8,6 +8,8 @@ import { generateId } from '../../utils'
 import { actionTypes, base } from '../constants'
 import { users } from '../selectors'
 
+import { selectUserSaga, clearSelectUserSaga } from './user'
+
 type AddUserSagaProps = {
   payload: {
     user: User,
@@ -57,6 +59,16 @@ export function* deleteUserSaga({
   yield put({
     type: actionTypes.DELETE_USER_SUCCESS,
     payload: { userId },
+  })
+
+  const getUsersEntities: Array<User> = yield select(users.getEntitiesSelector)
+
+  if (!getUsersEntities.length) {
+    return yield call(clearSelectUserSaga)
+  }
+
+  return yield call(selectUserSaga, {
+    payload: { userEmail: getUsersEntities[0].email },
   })
 }
 
