@@ -14,7 +14,7 @@ const PORT = 3000
 const PORT_ANALYZER = 4000
 
 const PROJECT_FOLDER = 'src'
-const BUILD_FOLDER = 'build'
+const BUILD_FOLDER = 'docs'
 const IMAGES_FOLDER = '/assets'
 
 const BUNDLE_NAME = 'bundle.js'
