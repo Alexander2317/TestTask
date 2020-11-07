@@ -13,7 +13,7 @@ type SelectPaymentMethodProps = {
   },
 }
 
-function* selectPaymentMethod({
+export function* selectPaymentMethod({
   payload: { selectedPaymentMethod },
 }: SelectPaymentMethodProps): Generator<Object, void, any> {
   const getEntitiesPayment: Array<Payment> = yield select(

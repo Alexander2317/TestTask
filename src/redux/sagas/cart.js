@@ -10,7 +10,7 @@ import { countInterest } from '../../utils'
 import { actionTypes } from '../constants'
 import { products, payment } from '../selectors'
 
-function* countCart(): Generator<Object, void, any> {
+export function* countCart(): Generator<Object, void, any> {
   const { commission, vat }: Cart = yield select(
     payment.getPaymentMethodParamsSelector,
   )
