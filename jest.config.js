@@ -33,7 +33,7 @@ module.exports = {
     [
       'jest-junit',
       {
-        suiteName: 'test-task',
+        suiteName: 'test-task-prnews',
         outputDirectory: './coverage',
         outputName: 'junit.xml',
         uniqueOutputName: false,
