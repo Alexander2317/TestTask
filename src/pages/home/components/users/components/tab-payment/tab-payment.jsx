@@ -7,13 +7,14 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import type { Payment } from '../../../../../../types/common-types'
 import paypalIcon from '../../../../../../assets/icons/paypal.svg'
 
+import { constants } from '../../../../../../redux'
 import { SelectionBlock } from '../../../../../../components'
 
 const useStyles = makeStyles({
   iconPayPal: {
     width: 24,
     height: 24,
-    background: `transparent url('/${paypalIcon}') no-repeat center center / cover`,
+    background: `transparent url('${constants.routes.baseRoute}/${paypalIcon}') no-repeat center center / cover`,
   },
 })
 

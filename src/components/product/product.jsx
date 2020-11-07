@@ -7,6 +7,7 @@ import makeStyles from '@material-ui/styles/makeStyles'
 
 import type { Product as ProductType } from '../../types/common-types'
 import { currencySymbols } from '../../config'
+import { constants } from '../../redux'
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +37,11 @@ const Product = (props: ProductType): React.Node => {
       className={style.root}
     >
       <Grid item>
-        <img src={`/${image}`} alt={brand} className={style.image} />
+        <img
+          src={`${constants.routes.baseRoute}/${image}`}
+          alt={brand}
+          className={style.image}
+        />
       </Grid>
       <Grid item>
         <Grid
