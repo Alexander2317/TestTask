@@ -12,6 +12,7 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
 
+import type { User } from '../../../../types/common-types'
 import { Alert } from '../../../../components'
 import { constants, actions, selectors } from '../../../../redux'
 import { validation } from '../../../../utils'
@@ -157,4 +158,4 @@ const mapDispatchToProps = { editUserAction: actions.users.editUser }
 export default (connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EditUserForm): React.AbstractComponent<any>)
+)(EditUserForm): React.AbstractComponent<{ user: User }>)

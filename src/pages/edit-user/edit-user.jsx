@@ -67,4 +67,4 @@ const mapDispatchToProps = { getUserAction: actions.user.getUser }
 export default (connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EditUser): React.AbstractComponent<any>)
+)(EditUser): React.AbstractComponent<{}>)
