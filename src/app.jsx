@@ -6,7 +6,7 @@ import { ConnectedRouter as Router } from 'connected-react-router'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import { configureStore, history } from './redux'
+import { configureStore, history } from './__data__'
 import { bignumberConfig } from './config'
 
 import Pages from './pages'

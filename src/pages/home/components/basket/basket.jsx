@@ -13,7 +13,7 @@ import type {
   Payment,
   Product as ProductType,
 } from '../../../../types/common-types'
-import { constants, selectors } from '../../../../redux'
+import { constants, selectors } from '../../../../__data__'
 
 import { Product, SumInfo } from '../../../../components'
 

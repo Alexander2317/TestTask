@@ -10,7 +10,7 @@ import makeStyles from '@material-ui/styles/makeStyles'
 
 import type { User } from '../../../../../../types/common-types'
 import { Account } from '../../../../../../components'
-import { constants } from '../../../../../../redux'
+import { constants } from '../../../../../../__data__'
 
 const useStyles = makeStyles({
   usersContainer: {
