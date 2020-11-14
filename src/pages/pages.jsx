@@ -9,7 +9,7 @@ import EditUser from './edit-user'
 import Thanks from './thanks'
 import NotFound from './not-found'
 
-import { constants } from '../redux'
+import { constants } from '../__data__'
 
 const { routes } = constants
 

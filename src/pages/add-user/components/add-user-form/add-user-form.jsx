@@ -13,7 +13,7 @@ import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
 
 import { Alert } from '../../../../components'
-import { constants, actions, selectors } from '../../../../redux'
+import { constants, actions, selectors } from '../../../../__data__'
 import { validation } from '../../../../utils'
 
 const useStyles = makeStyles({

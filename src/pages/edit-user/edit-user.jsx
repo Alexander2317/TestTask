@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import makeStyles from '@material-ui/styles/makeStyles'
 
 import type { User } from '../../types/common-types'
-import { actions, selectors } from '../../redux'
+import { actions, selectors } from '../../__data__'
 
 import { EditUserForm } from './components'
 

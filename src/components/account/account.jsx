@@ -19,7 +19,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import makeStyles from '@material-ui/styles/makeStyles'
 
-import { constants } from '../../redux'
+import { constants } from '../../__data__'
 
 const useStyles = makeStyles({
   root: {

@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab'
 import makeStyles from '@material-ui/styles/makeStyles'
 
 import type { Payment, User } from '../../../../types/common-types'
-import { actions, selectors } from '../../../../redux'
+import { actions, selectors } from '../../../../__data__'
 
 import { TabPanel, TabUsers, TabPayment } from './components'
 

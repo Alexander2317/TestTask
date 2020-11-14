@@ -2,7 +2,7 @@
 
 import * as Yup from 'yup'
 
-import { base } from '../../redux/constants'
+import { base } from '../../__data__/constants'
 
 import * as messages from './messages'
 
