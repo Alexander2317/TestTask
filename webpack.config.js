@@ -134,14 +134,14 @@ const getPlugins = (mode) =>
     }),
     isDevMode(mode) && new webpack.HotModuleReplacementPlugin(),
     !isDevMode(mode) &&
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled',
-      generateStatsFile: true,
-      statsOptions: { source: false },
-      analyzerPort: PORT_ANALYZER,
-    }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsOptions: { source: false },
+        analyzerPort: PORT_ANALYZER,
+      }),
     !isDevMode(mode) &&
-    new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: [BUILD_FOLDER] }),
+      new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: [BUILD_FOLDER] }),
     !isDevMode(mode) && new CompressionPlugin(),
   ].filter((plugin) => plugin)
 
@@ -150,26 +150,26 @@ const getOptimization = (mode) => ({
   minimizer: isDevMode(mode)
     ? []
     : [
-      new CssMinimizerPlugin({
-        test: REG_EXP.css,
-      }),
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          compress: {
-            dead_code: true,
-            conditionals: true,
-            booleans: true,
+        new CssMinimizerPlugin({
+          test: REG_EXP.css,
+        }),
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          terserOptions: {
+            compress: {
+              dead_code: true,
+              conditionals: true,
+              booleans: true,
+            },
+            module: false,
+            output: {
+              comments: false,
+              beautify: false,
+            },
           },
-          module: false,
-          output: {
-            comments: false,
-            beautify: false,
-          },
-        },
-      }),
-    ],
+        }),
+      ],
 })
 
 module.exports = (_, { mode }) => ({
