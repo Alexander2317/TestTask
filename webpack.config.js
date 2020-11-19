@@ -10,12 +10,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const MODE_DEVELOPMENT = 'development'
-const PORT = 3000
-const PORT_ANALYZER = 4000
+const PORT = process.env.PORT || 3000
+const PORT_ANALYZER = process.env.PORT_ANALYZER || 4000
 
 const PROJECT_FOLDER = 'src'
 const BUILD_FOLDER = 'build'
 const IMAGES_FOLDER = '/assets'
+const FAVICON_FOLDER = '/favicon'
 
 const BUNDLE_NAME = 'bundle.js'
 
@@ -39,7 +40,7 @@ const getRules = (mode) => [
   {
     test: REG_EXP.js,
     exclude: REG_EXP.modules,
-    use: ['babel-loader'],
+    loader: 'babel-loader',
   },
   {
     test: REG_EXP.css,
@@ -125,21 +126,22 @@ const getPlugins = (mode) =>
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, PATH.images),
-          to: `.${IMAGES_FOLDER}`,
+          from: path.resolve(__dirname, `${PATH.images}${FAVICON_FOLDER}`),
+          to: `.${IMAGES_FOLDER}${FAVICON_FOLDER}`,
+          noErrorOnMissing: true,
         },
       ],
     }),
     isDevMode(mode) && new webpack.HotModuleReplacementPlugin(),
     !isDevMode(mode) &&
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'disabled',
-        generateStatsFile: true,
-        statsOptions: { source: false },
-        analyzerPort: PORT_ANALYZER,
-      }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+      statsOptions: { source: false },
+      analyzerPort: PORT_ANALYZER,
+    }),
     !isDevMode(mode) &&
-      new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: [BUILD_FOLDER] }),
+    new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: [BUILD_FOLDER] }),
     !isDevMode(mode) && new CompressionPlugin(),
   ].filter((plugin) => plugin)
 
@@ -148,26 +150,26 @@ const getOptimization = (mode) => ({
   minimizer: isDevMode(mode)
     ? []
     : [
-        new CssMinimizerPlugin({
-          test: REG_EXP.css,
-        }),
-        new TerserPlugin({
-          cache: true,
-          parallel: true,
-          terserOptions: {
-            compress: {
-              dead_code: true,
-              conditionals: true,
-              booleans: true,
-            },
-            module: false,
-            output: {
-              comments: false,
-              beautify: false,
-            },
+      new CssMinimizerPlugin({
+        test: REG_EXP.css,
+      }),
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        terserOptions: {
+          compress: {
+            dead_code: true,
+            conditionals: true,
+            booleans: true,
           },
-        }),
-      ],
+          module: false,
+          output: {
+            comments: false,
+            beautify: false,
+          },
+        },
+      }),
+    ],
 })
 
 module.exports = (_, { mode }) => ({
